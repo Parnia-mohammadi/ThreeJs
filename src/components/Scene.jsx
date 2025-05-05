@@ -1,24 +1,19 @@
-import { Canvas } from "@react-three/fiber";
-import { useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useRef, useState } from "react";
+import RotatingBox from "./rotateBox";
 function Scene() {
-  const [colorBox, setColorBox] = useState("blue");
   const [BoxPosition, setBoxPosition] = useState([2, 0, 1]);
+
   return (
     <Canvas>
       <ambientLight intensity={0.7} />
       <directionalLight position={[2, 2, 2]} intensity={1} />
 
-      <mesh
-        position={[-2, 0, -1]}
-        onClick={() => setColorBox(colorBox === "blue" ? "orange" : "blue")}
-      >
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={colorBox} />
-      </mesh>
+      <RotatingBox />
       <mesh
         position={BoxPosition}
         onPointerOver={() => setBoxPosition([2, 0, 2])}
-        onPointerOut={()=>setBoxPosition([2,0,1])}
+        onPointerOut={() => setBoxPosition([2, 0, 1])}
       >
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color="red" />
