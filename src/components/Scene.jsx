@@ -2,6 +2,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import RotatingBox from "./rotateBox";
 import CustomCamera from "./CustomCamera";
+import Car from "../models/car";
 function Scene() {
   const [BoxPosition, setBoxPosition] = useState([2, 0, 1]);
 
@@ -17,17 +18,18 @@ function Scene() {
       {/* <pointLight position={[0, 0, 0]} intensity={10} color="white" /> */}
 
       {/* نور اسپات */}
-      <spotLight
+      {/* <spotLight
         position={[0, 3, 1]}
         intensity={10}
         angle={0.5}
         penumbra={0.5}
-      />
+      /> */}
 
-      {/* <directionalLight position={[2, 2, 2]} intensity={1} /> */}
+      <directionalLight position={[2, 2, 2]} intensity={1} />
 
       <RotatingBox />
-      <CustomCamera />
+      {/* <CustomCamera /> */}
+      <Car />
       <mesh
         position={BoxPosition}
         onPointerOver={() => setBoxPosition([2, 0, 2])}
